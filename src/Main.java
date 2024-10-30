@@ -36,7 +36,7 @@ public class Main {
             System.out.println("Error: " + e.getMessage());
         }
 
-        Cottage cottage = new Cottage("Cottage 1", "Lux", initialCottageAmenities, 3, new ArrayList<>());
+        Cottage cottage = new Cottage("Cottage 1", "Lux", initialCottageAmenities, 3, new ArrayList<>(), 1000);
 
         try {
             hotel.addCottageToHoselList(cottage);
@@ -82,6 +82,16 @@ public class Main {
 
         System.out.println("Would you like to add more amenities to the cottage? (yes/no)");
         String response = scanner.nextLine();
+
+        System.out.println("Would you like to know the discounted cost for booking in November or March?");
+        String discountResponse = scanner.nextLine();
+        if (discountResponse.equalsIgnoreCase("yes")) {
+            int discountedCost = cottage.calculateDiscountedCost();
+            System.out.println("Discounted cost for amenities in cottage is: " + discountedCost);
+        } else {
+            System.out.println("Total cost without discount: " + cottage.calculateTotalCost());
+        }
+
         if (response.equalsIgnoreCase("yes")) {
             while (true) {
                 System.out.println("Available amenities:");
@@ -113,5 +123,6 @@ public class Main {
                 }
             }
         }
+        hotel.printIncomeAndExpenseStatistics();
     }
 }

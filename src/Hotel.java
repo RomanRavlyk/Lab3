@@ -1,4 +1,4 @@
-import java.sql.SQLOutput;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -92,5 +92,27 @@ public class Hotel {
         return cottageList.stream()
                 .filter(cottage -> cottage.getAmenities().contains(amenity))
                 .collect(Collectors.toList());
+    }
+
+    public int calculateTotalIncome() {
+        return cottageList.stream()
+                .mapToInt(Cottage::getRentalPrice)
+                .sum();
+    }
+
+    public int calculateTotalExpenses() {
+        return allHotelAmenities.stream()
+                .mapToInt(Amenity::getCost)
+                .sum();
+    }
+
+    public void printIncomeAndExpenseStatistics() {
+        int totalIncome = calculateTotalIncome();
+        int totalExpenses = calculateTotalExpenses();
+        int profit = totalIncome - totalExpenses;
+
+        System.out.println("Total Income: " + totalIncome);
+        System.out.println("Total Expenses: " + totalExpenses);
+        System.out.println("Total Profit: " + profit);
     }
 }

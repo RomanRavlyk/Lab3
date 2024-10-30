@@ -8,13 +8,15 @@ public class Cottage {
     private List<Amenity> amenities = new ArrayList<>();
     private int maxGuests;
     private List<Booking> bookings = new ArrayList<>();
+    private final int rentalPrice;
 
-    public Cottage(String cottageName, String category, List<Amenity> amenities, int maxGuests, List<Booking> bookings) {
+    public Cottage(String cottageName, String category, List<Amenity> amenities, int maxGuests, List<Booking> bookings, int rentalPrice) {
         this.cottageName = cottageName;
         this.category = category;
         this.amenities = amenities;
         this.maxGuests = maxGuests;
         this.bookings = bookings;
+        this.rentalPrice = rentalPrice;
     }
 
     public String getCategory() {
@@ -93,4 +95,9 @@ public class Cottage {
     public void printAllCottageAmanities() {
         amenities.forEach(e -> System.out.println("Amenity name: " + e.getAmenityName() + " cost: " + e.getCost()));
     }
+
+    public int getRentalPrice() {
+        return rentalPrice;
+    }
+
 }
